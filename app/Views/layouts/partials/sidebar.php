@@ -28,14 +28,46 @@
 
 
                 <li class="nav-item">
-                    <a href="<?= base_url('/list/users') ?>" class="nav-link">
+                    <a href="<?= base_url('/list/members') ?>" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Master Member</p>
                     </a>
                 </li>
 
+                                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>
+                            Laporan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('/laporan/buku') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Laporan Data Buku</p>
+                            </a>
+                        </li>
+
+                          <li class="nav-item">
+                            <a href="<?= base_url('/laporan/label-buku') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Cetak Label Buku</p>
+                            </a>
+                        </li>
+                        
+
+                        <li class="nav-item">
+                            <a href="<?= base_url('/laporan/cetak-member') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Cetak Data Member</p>
+                            </a>
+                        </li>
+
 
             </ul>
+</li>
         </nav>
     </div>
 </aside>
