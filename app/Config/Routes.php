@@ -37,4 +37,14 @@ $routes->get('/laporan/cetak-buku', 'LaporanController::cetakBuku');
 $routes->get('/laporan/label-buku', 'LaporanController::labelBuku');
 $routes->get('/laporan/cetak-label-buku', 'LaporanController::cetakLabelBuku');
 $routes->get('/laporan/cetak-label-buku/(:num)', 'LaporanController::cetakLabelSatu/$1');
-$routes->get('laporan/cetak-member', 'LaporanController::cetakMember');
+
+$routes->get('/laporan/cetak-member', 'LaporanController::cetakMember');
+
+// Peminjaman Routes
+$routes->get('/peminjaman', 'PeminjamanController::index');
+$routes->post('/peminjaman/get-anggota', 'PeminjamanController::getAnggota');
+
+$routes->post('/peminjaman/store', 'PeminjamanController::store');
+$routes->post('/peminjaman/kembalikan/(:num)', 'PeminjamanController::kembalikan/$1');
+$routes->get('peminjaman/semua', 'PeminjamanController::semua');
+$routes->get('peminjaman/laporan-denda', 'PeminjamanController::laporanDenda');

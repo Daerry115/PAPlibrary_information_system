@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
-
     <style>
+        /* Pengaturan tampilan halaman */
         body {
             font-family: Arial, sans-serif;
             font-size: 12px;
@@ -13,6 +13,7 @@
             color: #000;
         }
 
+        /* Header laporan */
         .header-laporan {
             text-align: center;
             margin-bottom: 20px;
@@ -32,6 +33,7 @@
             color: #555;
         }
 
+        /* Tabel data */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -40,7 +42,7 @@
 
         table th {
             background-color: #343a40;
-            color: white;
+            color: #fff;
             padding: 8px;
             text-align: left;
             border: 1px solid #999;
@@ -50,6 +52,7 @@
         table td {
             padding: 6px 8px;
             border: 1px solid #ccc;
+            vertical-align: top;
             font-size: 11px;
         }
 
@@ -57,6 +60,7 @@
             background-color: #f2f2f2;
         }
 
+        /* Tombol cetak — hanya tampil di layar, tidak ikut tercetak */
         .tombol-cetak {
             text-align: right;
             margin-bottom: 15px;
@@ -67,10 +71,16 @@
             color: white;
             border: none;
             padding: 8px 20px;
+            font-size: 13px;
             border-radius: 4px;
             cursor: pointer;
         }
 
+        .tombol-cetak button:hover {
+            background-color: #c82333;
+        }
+
+        /* Saat dicetak: sembunyikan tombol, pastikan semua terlihat */
         @media print {
             .tombol-cetak {
                 display: none;
@@ -79,86 +89,68 @@
             body {
                 margin: 10px;
             }
+
+            table th {
+                background-color: #343a40 !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
     </style>
-
 </head>
-
 <body>
 
-<div class="tombol-cetak">
-    <button onclick="window.print()">
-        🖨 Cetak / Simpan sebagai PDF
-    </button>
-</div>
+    <!-- Tombol Cetak (hanya muncul di layar, tidak ikut tercetak) -->
+    <div class="tombol-cetak">
+        <button onclick="window.print()">
+            &#128438; Cetak / Simpan sebagai PDF
+        </button>
+    </div>
 
+    <!-- Header Laporan -->
+    <div class="header-laporan">
+        <h2>Laporan Data Member</h2>
+        <p>Library Information System</p>
+        <p>Dicetak pada: <?= date('d F Y, H:i') ?> WIB</p>
+    </div>
 
-<div class="header-laporan">
+    <table>
+        <thead>
+            <tr>
+                <th width="40">No.</th>
+                <th>Kode Member</th>
+                <th>Nama Member</th>
+                <th>Email</th>
+                <th>No. Telepon</th>
+                <th>Alamat</th>
+                <th>Tanggal Bergabung</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <?php $no = 0; ?>
+            <?php foreach($members as $member): ?>
+                <?php $no++; ?>
+                <tr>
+                    <td><?= $no ?></td>
+                    <td><?= $member['code_member'] ?></td>
+                    <td><?= $member['name_member'] ?></td>
+                    <td><?= $member['email_member'] ?></td>
+                    <td><?= $member['phone_member'] ?></td>
+                    <td><?= $member['address_member'] ?></td>
+                    <td><?= $member['join_date'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-    <h2>Laporan Data Member</h2>
-
-    <p>Library Information System</p>
-
-    <p>
-        Dicetak pada: <?= date('d F Y, H:i') ?> WIB
-    </p>
-
-</div>
-
-
-<table>
-
-<thead>
-<tr>
-    <th width="40">No.</th>
-    <th>Kode Member</th>
-    <th>Nama Member</th>
-    <th>Email</th>
-    <th>No. Telepon</th>
-    <th>Alamat</th>
-</tr>
-</thead>
-
-
-<tbody>
-
-<?php $no = 0; ?>
-
-<?php foreach($members as $member): ?>
-
-<?php $no++; ?>
-
-<tr>
-
-    <td><?= $no ?></td>
-
-    <td><?= $member['code_member'] ?></td>
-
-    <td><?= $member['name_member'] ?></td>
-
-    <td><?= $member['email_member'] ?></td>
-
-    <td><?= $member['phone_member'] ?></td>
-
-    <td><?= $member['address_member'] ?></td>
-
-</tr>
-
-<?php endforeach; ?>
-
-</tbody>
-
-</table>
-
-
-<script>
-
-window.onload = function () {
-    window.print();
-};
-
-</script>
-
+    <script>
+        // Dialog cetak muncul otomatis saat halaman dibuka
+        window.onload = function () {
+            window.print();
+        };
+    </script>
 
 </body>
 </html>
